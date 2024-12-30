@@ -1,0 +1,80 @@
+# Simple Calculator Program
+
+def add(x, y):
+    """Returns the sum of x and y."""
+    return x + y
+
+def subtract(x, y):
+    """Returns the difference of x and y."""
+    return x - y
+
+def multiply(x, y):
+    """Returns the product of x and y."""
+    return x * y
+
+def divide(x, y):
+    """Returns the quotient of x and y. Handles division by zero."""
+    if y == 0:
+        return "Error! Division by zero."
+    return x / y
+
+def get_number_input(prompt):
+    """Prompts the user for a valid number input, with error handling."""
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+
+def get_operation_choice():
+    """Displays the operation choices and returns the user's choice."""
+    print("Choose an operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    
+    while True:
+        choice = input("Enter choice (1/2/3/4): ")
+        if choice in ['1', '2', '3', '4']:
+            return choice
+        else:
+            print("Invalid choice! Please select a valid option (1, 2, 3, or 4).")
+
+def perform_calculation():
+    """Main function that performs the calculation based on user's input."""
+    
+    num1 = get_number_input("Enter first number: ")
+    num2 = get_number_input("Enter second number: ")
+
+
+    choice = get_operation_choice()
+
+    
+    if choice == '1':
+        result = add(num1, num2)
+    elif choice == '2':
+        result = subtract(num1, num2)
+    elif choice == '3':
+        result = multiply(num1, num2)
+    elif choice == '4':
+        result = divide(num1, num2)
+
+    
+    print(f"The result is: {result}")
+
+def calculator():
+    """Runs the calculator program."""
+    while True:
+        perform_calculation()
+        
+    
+        repeat = input("Do you want to perform another calculation? (yes/no): ").strip().lower()
+        if repeat != 'yes':
+            print("Thank you for using the calculator. Goodbye!")
+            break
+
+
+if __name__ == "__main__":
+    calculator()
+
